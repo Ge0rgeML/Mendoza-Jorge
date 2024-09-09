@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio 2</title>
+</head>
+<body>
+    <h1>Laboratorio 2</h1>
+
+    <h3>1. Verificar si un número es palíndromo en base 10 y base 2</h3>
+    <input type="number" id="numeroPalindromo" placeholder="Ingresa un número">
+    <button onclick="verificarPalindromo()">Verificar Palíndromo</button>
+    <p id="resultadoPalindromo"></p>
+
+    <h3>2. Contar caracteres en una cadena</h3>
+    <input type="text" id="cadenaCaracteres" placeholder="Ingresa una cadena">
+    <button onclick="contarCaracteres()">Contar Caracteres</button>
+    <p id="resultadoCaracteres"></p>
+
+    <h3>3. Verificar si un año es bisiesto</h3>
+    <input type="number" id="añoBisiesto" placeholder="Ingresa un año">
+    <button onclick="verificarBisiesto()">Verificar Bisiesto</button>
+    <p id="resultadoBisiesto"></p>
+
+    <h3>4. Sumatoria de números primos menores a "n"</h3>
+    <input type="number" id="numeroPrimos" placeholder="Ingresa un número">
+    <button onclick="sumarPrimos()">Sumar Primos</button>
+    <p id="resultadoPrimos"></p>
+
+    <script>
+        function verificarPalindromo() {
+            const numero = parseInt(document.getElementById('numeroPalindromo').value);
+            const esPalindromo = (cadena) => cadena === cadena.split('').reverse().join('');
+            const esPalindromoDobleBase = (numero) => {
+                const base10 = numero.toString();
+                const base2 = numero.toString(2);
+                return esPalindromo(base10) && esPalindromo(base2);
+            };
+            const resultado = esPalindromoDobleBase(numero) ? `${numero} es palíndromo en base 10 y base 2` : `${numero} no es palíndromo en base 10 y base 2`;
+            document.getElementById('resultadoPalindromo').innerText = resultado;
+            console.log(resultado);
+        }
+
+        function contarCaracteres() {
+            const cadena = document.getElementById('cadenaCaracteres').value;
+            const contar = (cadena) => {
+                const conteo = {};
+                for (let caracter of cadena) {
+                    conteo[caracter] = conteo[caracter] ? conteo[caracter] + 1 : 1;
+                }
+                return conteo;
+            };
+            const resultado = contar(cadena);
+            document.getElementById('resultadoCaracteres').innerText = `Conteo de caracteres: ${JSON.stringify(resultado)}`;
+            console.log(`Conteo de caracteres en "${cadena}":`, resultado);
+        }
+
+        function verificarBisiesto() {
+            const año = parseInt(document.getElementById('añoBisiesto').value);
+            const esBisiesto = (año) => (año % 4 === 0 && año % 100 !== 0) || (año % 400 === 0);
+            const resultado = esBisiesto(año) ? `${año} es un año bisiesto` : `${año} no es un año bisiesto`;
+            document.getElementById('resultadoBisiesto').innerText = resultado;
+            console.log(resultado);
+        }
+
+        function sumarPrimos() {
+            const limite = parseInt(document.getElementById('numeroPrimos').value);
+            const esPrimo = (numero) => {
+                if (numero < 2) return false;
+                for (let i = 2; i <= Math.sqrt(numero); i++) {
+                    if (numero % i === 0) return false;
+                }
+                return true;
+            };
+            const sumar = (limite) => {
+                let suma = 0;
+                for (let i = 1; i <= limite; i++) {
+                    if (esPrimo(i)) {
+                        suma += i;
+                    }
+                }
+                return suma;
+            };
+            const resultado = `La sumatoria de primos menores o iguales a ${limite} es ${sumar(limite)}`;
+            document.getElementById('resultadoPrimos').innerText = resultado;
+            console.log(resultado);
+        }
+    </script>
+</body>
+</html>
