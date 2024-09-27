@@ -3,59 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario entrada dinamica</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input {
-            width: 100%;
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
-        span {
-            font-weight: bold;
-        }
-    </style>
+    <title>Formulario entrada dinámica con colores</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Ingresa una palabra para escribirla alrevés</h1>
+        <h1>Ingresa una palabra para escribirla al revés</h1>
         <form>
             <label for="nombre">Escribe algo:</label>
             <input type="text" id="nombre" placeholder="Escribe aquí...">
+            
+            <label for="color">Elige un color:</label>
+            <select id="color">
+                <option value="black">Negro</option>
+                <option value="red">Rojo</option>
+                <option value="blue">Azul</option>
+                <option value="green">Verde</option>
+                <option value="purple">Morado</option>
+            </select>
         </form>
         <p>Este es el texto invertido: <span id="resultado"></span></p>
     </div>
+    
     <script>
         (() => {
             const input = document.getElementById('nombre');
             const resultado = document.getElementById('resultado');
+            const selectColor = document.getElementById('color');
 
             input.addEventListener('input', () => {
                 const textoIngresado = input.value;
                 const textoInvertido = textoIngresado.split('').reverse().join('');
                 resultado.textContent = textoInvertido;
+            });
+
+            selectColor.addEventListener('change', () => {
+                const colorSeleccionado = selectColor.value;
+                resultado.style.color = colorSeleccionado;
             });
         })();
     </script>
