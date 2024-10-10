@@ -6,46 +6,60 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #285c21;
 }
 
-.container {
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgb(241, 239, 81);
+    border-radius: 10px;
+}
+
+.contenedor {
     width: 90%;
     max-width: 800px;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(170, 250, 117);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.buttons-container {
+.contenedor-botones {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    align-items: center; 
     margin-bottom: 20px;
 }
 
-#numbers-container {
+.botones-ordenar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.caja-numero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    background-color: #c1df40;
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#contenedor-numeros {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: flex-start;
 }
 
-.number-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
 @media (max-width: 600px) {
-    .number-box {
+    .caja-numero {
         width: 45px;
         height: 45px;
         font-size: 1.2em;

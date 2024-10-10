@@ -1,63 +1,61 @@
 (function () {
-    const RandomNumberGenerator = (function () {
-        const numbers = [];
-        const container = document.getElementById('numbers-container');
+    const GeneradorNumeroAleatorio = (function () {
+        const numeros = [];
+        const contenedor = document.getElementById('contenedor-numeros');
 
-        function generateRandomNumber() {
+        function generarNumeroAleatorio() {
             return Math.floor(Math.random() * 99) + 1;
         }
 
-        function createNumberBox(number) {
+        function crearCajaNumero(numero) {
             const div = document.createElement('div');
-            div.className = 'number-box';
+            div.className = 'caja-numero';
             const span = document.createElement('span');
-            span.textContent = number;
+            span.textContent = numero;
             div.appendChild(span);
-            container.appendChild(div);
+            contenedor.appendChild(div);
         }
 
-        function updateDisplay() {
-            
-            container.innerHTML = '';
-            numbers.forEach(number => createNumberBox(number));
+        function actualizarPantalla() {
+            contenedor.innerHTML = '';
+            numeros.forEach(numero => crearCajaNumero(numero));
         }
 
         return {
-            generateNumber: function () {
-                
-                if (numbers.length >= 99) {
-                    alert('Ya se han generado todos los números posibles (1-99).');
+            generarNumero: function () {
+                if (numeros.length >= 99) {
+                    alert('Ya se han generado todos los números posibles (1 al 99).');
                     return;
                 }
 
-                let newNumber;
+                let nuevoNumero;
                 do {
-                    newNumber = generateRandomNumber();
-                } while (numbers.includes(newNumber));
+                    nuevoNumero = generarNumeroAleatorio();
+                } while (numeros.includes(nuevoNumero));
 
-                numbers.push(newNumber);
-                createNumberBox(newNumber);
+                numeros.push(nuevoNumero);
+                crearCajaNumero(nuevoNumero);
             },
-            sortAscending: function () {
-                numbers.sort((a, b) => a - b);
-                updateDisplay();
+            ordenarAscendente: function () {
+                numeros.sort((a, b) => a - b);
+                actualizarPantalla();
             },
-            sortDescending: function () {
-                numbers.sort((a, b) => b - a);
-                updateDisplay();
+            ordenarDescendente: function () {
+                numeros.sort((a, b) => b - a);
+                actualizarPantalla();
             }
         };
     })();
 
-    document.getElementById('generate').addEventListener('click', function () {
-        RandomNumberGenerator.generateNumber();
+    document.getElementById('generar').addEventListener('click', function () {
+        GeneradorNumeroAleatorio.generarNumero();
     });
 
-    document.getElementById('sortAsc').addEventListener('click', function () {
-        RandomNumberGenerator.sortAscending();
+    document.getElementById('ordenarAsc').addEventListener('click', function () {
+        GeneradorNumeroAleatorio.ordenarAscendente();
     });
 
-    document.getElementById('sortDesc').addEventListener('click', function () {
-        RandomNumberGenerator.sortDescending();
+    document.getElementById('ordenarDesc').addEventListener('click', function () {
+        GeneradorNumeroAleatorio.ordenarDescendente();
     });
 })();
